@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -16,13 +16,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -43,25 +43,27 @@
     <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\bin\</OutDir>
-    <IntDir>.\ReleaseVC7\</IntDir>
+    <OutDir>$(SolutionDir)\Output\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)\Output\$(Configuration)\$(TargetName)_$(PlatformArchitecture)</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>ChocolateDuke3D</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\bin\</OutDir>
-    <IntDir>.\DebugVC7\</IntDir>
+    <OutDir>$(SolutionDir)\Output\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)\Output\$(Configuration)\$(TargetName)_$(PlatformArchitecture)</IntDir>
+    <TargetName>ChocolateDuke3D_debug</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
       <TypeLibraryName>.\Release/Game.tlb</TypeLibraryName>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>..\SDL-1.2.9\include;..\SDL_mixer-1.2.6;..\Engine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Devel\SDK\SDL\include;..\Engine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>nDBGRECORD; CHECK_XDUKE_REV; nDEBUG; WIN32; _CONSOLE; PLATFORM_WIN32; _CRT_SECURE_NO_DEPRECATE; _CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -76,13 +78,13 @@
       <ResourceOutputFileName>$(IntDir)%(Filename).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MACHINE:I386 /ENTRY:"mainCRTStartup" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>dxguid.lib;sdl.lib;sdl_mixer.lib;winmm.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)ChocolateDuke3D.exe</OutputFile>
       <Version>19.4</Version>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Directx_dec_2005\;..\SDL-1.2.9\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>D:\Devel\SDK\DX\Lib\x86;D:\Devel\SDK\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
@@ -92,7 +94,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\SDL-1.2.9\include;..\SDL_mixer-1.2.6;..\Engine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Devel\SDK\SDL\include;..\Engine\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>nDBGRECORD; CHECK_XDUKE_REV; nDEBUG; WIN32; _CONSOLE; PLATFORM_WIN32; _CRT_SECURE_NO_DEPRECATE; _CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -108,13 +110,13 @@
       <Culture>0x0000</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MACHINE:I386 /ENTRY:"mainCRTStartup" %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>dxguid.lib;sdl.lib;sdl_mixer.lib;winmm.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)Game.exe</OutputFile>
+      <OutputFile>$(OutDir)ChocolateDuke3D_Debug.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Directx_dec_2005\;..\SDL-1.2.9\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Devel\SDK\DX\Lib\x86;D:\Devel\SDK\SDL\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
